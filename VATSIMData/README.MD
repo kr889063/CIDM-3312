@@ -14,6 +14,27 @@ The lirbary reads from a text file on the Internet/WWW every two minutes and wri
 
 We will query for airports or aircraft to find flights where we can then view some basic data about those flights.
 
+## HW
+
+A brief demonstration of the first homework assignment that used this project.
+
+## API
+
+HTTP endpoints are provided to provide text output for various queries.  A precursor to a proper REST api.
+
+# How to Run
+
+1. You always want to run the `client` app a few times to get some data into the database or update the database.
+    1. If this is your first time running the application, you must first run `dotnet ef database update` from within the `library` project
+    2. Because the client program and library are separated, you must specify a startup project: `dotnet ef database update --startup-project ..\client\client.csproj`
+2. Once the database is taken care of, you can run the client like this: `dotnet run {number_of_minutes}`
+    1. that `{number_of_minutes}` indicates that you should pass the total number of minutes you'd like client to run (not to exceed 10)
+    2. Here is how you'd call it: `dotnet run 5` for 5 minutes
+    3. Each **pass** through the program takes around 2 minutes, once that time expires, another **pass** commences
+3. The **hw** project was created to demonstrate LINQ queries against the database
+4. The **api** project was created to demonstrate using HTTP Endpoints to request data to the browser that also uses LINQ queries.
+5. Each project - **client**,**hw**,**api** - must be run from within their own project folder.
+
 ## Entity Framework Core
 
 Follow the steps in this tutorial carefully: [Getting Started with EF Core](https://docs.microsoft.com/en-us/ef/core/get-started/?tabs=netcore-cli)
@@ -101,4 +122,19 @@ Don't forget my hint above that you can use the [DB Browser for SQLite](https://
 ## Video
 
 I will follow this up with an orientation video soon, but I wanted to get you started.  The dropbox for this will be in Blackboard.
+
+# Using ASP.NET Core Platform Features to Work with this data
+
+Part II of Freeman's book discusses some of the basic mechanics of how an HTTP Request and Response work within ASP.NET.
+
+I have created Request/Response Endpoints similar to chapters 12-14.
+
+For Flights, I have created the following endpoints:
+
+* `/flights/type/{type}` - where `{type}` is a placeholder/segment for an aircraft type code (common: A320, B738, B77L, A319, B737)
+* `/flights/departure/{departure}` - where `{depature}` is a placeholder/segment for an the departure airprt (common: EDDF, EGGL, KATL, KLAX, RJAA)
+* `/flights/destination/{destination}` - where `{destination}` is a placeholder/segment for an the destination airprt (common: EDDF, EGGL, KATL, KLAX, RJAA)
+
+# Using ASP.NET MVC/RazorPages to Work with this data
+
 

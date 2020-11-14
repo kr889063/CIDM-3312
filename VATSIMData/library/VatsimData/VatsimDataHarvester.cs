@@ -2,7 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-using VatsimLibrary.VatsimClient;
+using VatsimLibrary.VatsimClientV1;
 using VatsimLibrary.VatsimDb;
 using VatsimLibrary.VatsimUtils;
 
@@ -49,7 +49,8 @@ namespace VatsimLibrary.VatsimData
             Console.WriteLine($"Starting: {DateTime.UtcNow.ToLongTimeString()}");
 
             await VatsimDataReader.ProcessVatsimData();
-            VatsimDataReader.CurrentVatsimData.ProcessVatsimClientRecords();
+            // VatsimDataReader.CurrentVatsimData.ProcessVatsimClientRecords();
+            VatsimDataReader.CurrentVatsimData.BatchProcessVatsimClientRecords();
             
             Console.WriteLine($"Completed: {DateTime.UtcNow.ToLongTimeString()}");
         }
